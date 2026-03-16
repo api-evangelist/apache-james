@@ -1,0 +1,36 @@
+aid: apache-james
+name: Apache James
+description: >-
+  Apache James is a portable and enterprise-ready mail server built entirely in Java. It implements SMTP, IMAP, POP3, and JMAP protocols and provides a modular architecture with a comprehensive administration REST API.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Email
+  - Mail Server
+  - SMTP
+  - IMAP
+  - JMAP
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-james:apache-james-webadmin-rest-api
+    name: Apache James WebAdmin REST API
+    description: >-
+      The James WebAdmin API provides REST endpoints for managing domains, users, mailboxes, mail repositories, mail queues, and server configuration, along with the JMAP protocol implementation for modern email client access.
+    humanURL: https://james.apache.org/server/manage-webadmin.html
+    tags:
+      - REST
+      - Email
+      - JMAP
+      - Administration
+    properties:
+      - type: Documentation
+        url: https://james.apache.org/server/manage-webadmin.html
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
