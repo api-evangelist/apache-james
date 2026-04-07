@@ -8,10 +8,10 @@ access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Email
-  - Mail Server
-  - SMTP
   - IMAP
   - JMAP
+  - Mail Server
+  - SMTP
 created: '2026-03-16'
 modified: '2026-03-16'
 url: >-
@@ -24,10 +24,10 @@ apis:
       The James WebAdmin API provides REST endpoints for managing domains, users, mailboxes, mail repositories, mail queues, and server configuration, along with the JMAP protocol implementation for modern email client access.
     humanURL: https://james.apache.org/server/manage-webadmin.html
     tags:
-      - REST
+      - Administration
       - Email
       - JMAP
-      - Administration
+      - REST
     properties:
       - type: Documentation
         url: https://james.apache.org/server/manage-webadmin.html
