@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-schema/webadmin-rest-api-health-check-result-schema.json",
+  "title": "HealthCheckResult",
+  "description": "Health check results for all components",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "Overall health status",
+      "enum": [
+        "healthy",
+        "degraded",
+        "unhealthy"
+      ],
+      "example": "healthy"
+    },
+    "checks": {
+      "type": "array",
+      "description": "Individual component checks",
+      "items": {
+        "$ref": "#/components/schemas/ComponentCheck"
+      }
+    }
+  }
+}

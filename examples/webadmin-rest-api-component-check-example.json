@@ -1,0 +1,6 @@
+{
+  "componentName": "Cassandra backend",
+  "escapedComponentName": "Cassandra%20backend",
+  "status": "healthy",
+  "cause": "Connection timeout"
+}

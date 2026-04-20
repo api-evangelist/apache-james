@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-mailbox-structure.json",
+  "name": "Mailbox",
+  "description": "A user mailbox",
+  "properties": {
+    "mailboxName": {
+      "type": "string",
+      "description": "Mailbox folder name",
+      "example": "INBOX"
+    },
+    "mailboxId": {
+      "type": "string",
+      "description": "Unique mailbox identifier",
+      "example": "mailbox-1234"
+    }
+  }
+}

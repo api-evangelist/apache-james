@@ -1,0 +1,132 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Apache James WebAdmin REST API"
+  description: "Shared per-API capability for the Apache James WebAdmin REST API covering domain, user, mailbox, quota, and task management."
+  tags:
+    - Apache James
+    - Email Administration
+    - Mail Server
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      JAMES_ADMIN_TOKEN: JAMES_ADMIN_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: james-webadmin
+      baseUri: http://localhost:8000
+      description: "Apache James WebAdmin REST API"
+      authentication:
+        type: bearer
+        token: "{{JAMES_ADMIN_TOKEN}}"
+      resources:
+        - name: domains
+          path: /domains
+          description: Email domain management
+          operations:
+            - name: list-domains
+              method: GET
+              description: List all domains
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-domain
+              method: POST
+              description: Create a domain
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: users
+          path: /users
+          description: User account management
+          operations:
+            - name: list-users
+              method: GET
+              description: List all users
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-user
+              method: POST
+              description: Create a user
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: tasks
+          path: /tasks
+          description: Async task management
+          operations:
+            - name: list-tasks
+              method: GET
+              description: List all tasks
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: james-webadmin-exposed
+      resources:
+        - path: /v1/domains
+          name: domains
+          operations:
+            - method: GET
+              name: list-domains
+              call: "james-webadmin.list-domains"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: james-webadmin-mcp
+      transport: http
+      tools:
+        - name: list-domains
+          description: List all email domains
+          hints:
+            readOnly: true
+          call: "james-webadmin.list-domains"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-domain
+          description: Create an email domain
+          hints:
+            readOnly: false
+          call: "james-webadmin.create-domain"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-users
+          description: List all mail users
+          hints:
+            readOnly: true
+          call: "james-webadmin.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-tasks
+          description: List async administrative tasks
+          hints:
+            readOnly: true
+          call: "james-webadmin.list-tasks"
+          outputParameters:
+            - type: object
+              mapping: "$."

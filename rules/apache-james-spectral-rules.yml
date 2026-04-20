@@ -1,0 +1,174 @@
+rules:
+  info-title-prefix:
+    description: Info title should start with Apache James
+    severity: warn
+    given: "$.info"
+    then:
+      field: title
+      function: pattern
+      functionOptions:
+        match: "^Apache James"
+
+  info-description-required:
+    description: Info must have a description
+    severity: warn
+    given: "$.info"
+    then:
+      field: description
+      function: truthy
+
+  info-version-required:
+    description: Info must have a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  openapi-version:
+    description: Must use OpenAPI 3.x
+    severity: error
+    given: "$"
+    then:
+      field: openapi
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  servers-defined:
+    description: Servers must be defined
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  operation-summary-required:
+    description: Every operation must have a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-summary-prefix:
+    description: Summaries should start with Apache James WebAdmin
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: pattern
+      functionOptions:
+        match: "^Apache James"
+
+  operation-id-required:
+    description: Every operation must have an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-tags-required:
+    description: Every operation must have tags
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  response-description-required:
+    description: Responses must have descriptions
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  get-no-request-body:
+    description: GET operations must not have request bodies
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy
+
+  paths-no-trailing-slash:
+    description: Paths must not have trailing slashes
+    severity: warn
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        notMatch: "\\/$"
+
+  response-2xx-required:
+    description: Every operation must have a 2xx response
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - required: ["200"]
+            - required: ["201"]
+            - required: ["204"]
+
+  security-schemes-defined:
+    description: Security schemes should be defined
+    severity: warn
+    given: "$.components"
+    then:
+      field: securitySchemes
+      function: truthy
+
+  no-empty-descriptions:
+    description: Descriptions must not be empty
+    severity: warn
+    given: "$..description"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".+"
+
+  parameter-description-required:
+    description: Parameters should have descriptions
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-description-required:
+    description: Component schemas should have descriptions
+    severity: info
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-error-404:
+    description: GET operations should document 404 responses
+    severity: info
+    given: "$.paths[*].get.responses"
+    then:
+      field: "404"
+      function: truthy
+
+  response-error-400:
+    description: POST operations should document 400 responses
+    severity: info
+    given: "$.paths[*].post.responses"
+    then:
+      field: "400"
+      function: truthy
+
+  operation-description-recommended:
+    description: Operations should have descriptions
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy

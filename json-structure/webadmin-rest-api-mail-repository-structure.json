@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-mail-repository-structure.json",
+  "name": "MailRepository",
+  "description": "A mail repository for storing messages",
+  "properties": {
+    "repository": {
+      "type": "string",
+      "description": "Repository path",
+      "example": "var/mail/error/"
+    },
+    "id": {
+      "type": "string",
+      "description": "Repository identifier",
+      "example": "var%2Fmail%2Ferror%2F"
+    }
+  }
+}

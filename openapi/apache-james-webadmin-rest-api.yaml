@@ -1,0 +1,568 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Domains
+  description: Email domain management
+- name: Users
+  description: User account management
+- name: Mailboxes
+  description: Mailbox management
+- name: Quotas
+  description: Storage and message quota management
+- name: DropLists
+  description: Email blacklist management
+- name: MailQueues
+  description: Mail queue management
+- name: MailRepositories
+  description: Mail repository management
+- name: Tasks
+  description: Asynchronous task management
+- name: HealthCheck
+  description: System health monitoring
+paths:
+  /domains:
+    get:
+      operationId: listDomains
+      summary: Apache james Apache James WebAdmin List Domains
+      description: List all email domains configured in the James server.
+      tags: [Domains]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of domains
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: example.com
+              examples:
+                listDomains200Example:
+                  summary: Default listDomains 200 response
+                  x-microcks-default: true
+                  value: {}
+    post:
+      operationId: createDomain
+      summary: Apache james Apache James WebAdmin Create Domain
+      description: Create a new email domain.
+      tags: [Domains]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRequest'
+            examples:
+              createDomainRequestExample:
+                summary: Default createDomain request
+                x-microcks-default: true
+                value:
+                  domain: example.com
+      responses:
+        '204':
+          description: Domain created successfully
+        '400':
+          description: Invalid domain name
+  /domains/{domain}:
+    get:
+      operationId: getDomain
+      summary: Apache james Apache James WebAdmin Get Domain
+      description: Check if a domain exists.
+      tags: [Domains]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+        example: example.com
+      responses:
+        '200':
+          description: Domain exists
+        '404':
+          description: Domain not found
+    delete:
+      operationId: deleteDomain
+      summary: Apache james Apache James WebAdmin Delete Domain
+      description: Delete an email domain.
+      tags: [Domains]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+        example: example.com
+      responses:
+        '204':
+          description: Domain deleted
+  /users:
+    get:
+      operationId: listUsers
+      summary: Apache james Apache James WebAdmin List Users
+      description: List all users in the James server.
+      tags: [Users]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                listUsers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value: {}
+    post:
+      operationId: createUser
+      summary: Apache james Apache James WebAdmin Create User
+      description: Create a new user account.
+      tags: [Users]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+            examples:
+              createUserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  username: user@example.com
+                  password: securepassword
+      responses:
+        '200':
+          description: User created
+        '400':
+          description: Invalid user data
+  /users/{username}:
+    delete:
+      operationId: deleteUser
+      summary: Apache james Apache James WebAdmin Delete User
+      description: Delete a user account and all associated data.
+      tags: [Users]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '204':
+          description: User deleted
+  /users/{username}/mailboxes:
+    get:
+      operationId: listUserMailboxes
+      summary: Apache james Apache James WebAdmin List User Mailboxes
+      description: List all mailboxes for a specific user.
+      tags: [Mailboxes]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '200':
+          description: List of mailboxes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mailbox'
+              examples:
+                listUserMailboxes200Example:
+                  summary: Default listUserMailboxes 200 response
+                  x-microcks-default: true
+                  value: {}
+  /quota/users/{username}:
+    get:
+      operationId: getUserQuota
+      summary: Apache james Apache James WebAdmin Get User Quota
+      description: Retrieve the storage and message quota settings for a user.
+      tags: [Quotas]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '200':
+          description: User quota
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quota'
+              examples:
+                getUserQuota200Example:
+                  summary: Default getUserQuota 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10000
+                    size: 1073741824
+    put:
+      operationId: updateUserQuota
+      summary: Apache james Apache James WebAdmin Update User Quota
+      description: Set storage and message quota for a specific user.
+      tags: [Quotas]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quota'
+            examples:
+              updateUserQuotaRequestExample:
+                summary: Default updateUserQuota request
+                x-microcks-default: true
+                value:
+                  count: 10000
+                  size: 1073741824
+      responses:
+        '204':
+          description: Quota updated
+  /mailQueues:
+    get:
+      operationId: listMailQueues
+      summary: Apache james Apache James WebAdmin List Mail Queues
+      description: List all mail queues on the server.
+      tags: [MailQueues]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of mail queues
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                listMailQueues200Example:
+                  summary: Default listMailQueues 200 response
+                  x-microcks-default: true
+                  value: {}
+  /mailRepositories:
+    get:
+      operationId: listMailRepositories
+      summary: Apache james Apache James WebAdmin List Mail Repositories
+      description: List all mail repositories on the server.
+      tags: [MailRepositories]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of mail repositories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MailRepository'
+              examples:
+                listMailRepositories200Example:
+                  summary: Default listMailRepositories 200 response
+                  x-microcks-default: true
+                  value: {}
+  /tasks:
+    get:
+      operationId: listTasks
+      summary: Apache james Apache James WebAdmin List Tasks
+      description: List all asynchronous tasks and their statuses.
+      tags: [Tasks]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+              examples:
+                listTasks200Example:
+                  summary: Default listTasks 200 response
+                  x-microcks-default: true
+                  value: {}
+  /tasks/{taskId}:
+    get:
+      operationId: getTask
+      summary: Apache james Apache James WebAdmin Get Task
+      description: Retrieve the status and result of an asynchronous task.
+      tags: [Tasks]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+              examples:
+                getTask200Example:
+                  summary: Default getTask 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                    type: reindexing
+                    status: completed
+                    submitDate: '2025-03-15T14:30:00Z'
+                    startedDate: '2025-03-15T14:30:01Z'
+                    completedDate: '2025-03-15T14:30:05Z'
+    delete:
+      operationId: cancelTask
+      summary: Apache james Apache James WebAdmin Cancel Task
+      description: Cancel a pending or running asynchronous task.
+      tags: [Tasks]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      responses:
+        '204':
+          description: Task cancelled
+  /healthcheck:
+    get:
+      operationId: checkHealth
+      summary: Apache james Apache James WebAdmin Check Health
+      description: Check the health status of all system components.
+      tags: [HealthCheck]
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: All components healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResult'
+              examples:
+                checkHealth200Example:
+                  summary: Default checkHealth 200 response
+                  x-microcks-default: true
+                  value:
+                    status: healthy
+                    checks: []
+        '503':
+          description: One or more components unhealthy
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    DomainRequest:
+      type: object
+      description: Request body for domain operations
+      properties:
+        domain:
+          type: string
+          description: Email domain name
+          example: example.com
+    User:
+      type: object
+      description: A James mail server user account
+      properties:
+        username:
+          type: string
+          description: User email address
+          example: user@example.com
+    UserRequest:
+      type: object
+      description: Request body for user creation
+      properties:
+        username:
+          type: string
+          description: User email address
+          example: user@example.com
+        password:
+          type: string
+          description: User password
+          example: securepassword
+    Mailbox:
+      type: object
+      description: A user mailbox
+      properties:
+        mailboxName:
+          type: string
+          description: Mailbox folder name
+          example: INBOX
+        mailboxId:
+          type: string
+          description: Unique mailbox identifier
+          example: mailbox-1234
+    Quota:
+      type: object
+      description: Storage and message quota configuration
+      properties:
+        count:
+          type: integer
+          description: Maximum number of messages (null for unlimited)
+          example: 10000
+        size:
+          type: integer
+          description: Maximum storage size in bytes (null for unlimited)
+          example: 1073741824
+    MailRepository:
+      type: object
+      description: A mail repository for storing messages
+      properties:
+        repository:
+          type: string
+          description: Repository path
+          example: var/mail/error/
+        id:
+          type: string
+          description: Repository identifier
+          example: var%2Fmail%2Ferror%2F
+    Task:
+      type: object
+      description: An asynchronous task
+      properties:
+        taskId:
+          type: string
+          format: uuid
+          description: Unique task identifier
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        type:
+          type: string
+          description: Task type
+          example: reindexing
+        status:
+          type: string
+          description: Task status
+          enum: [waiting, inProgress, completed, failed, cancelled]
+          example: completed
+        submitDate:
+          type: string
+          format: date-time
+          description: When the task was submitted
+          example: '2025-03-15T14:30:00Z'
+        startedDate:
+          type: string
+          format: date-time
+          description: When the task started executing
+          example: '2025-03-15T14:30:01Z'
+        completedDate:
+          type: string
+          format: date-time
+          description: When the task completed
+          example: '2025-03-15T14:30:05Z'
+    HealthCheckResult:
+      type: object
+      description: Health check results for all components
+      properties:
+        status:
+          type: string
+          description: Overall health status
+          enum: [healthy, degraded, unhealthy]
+          example: healthy
+        checks:
+          type: array
+          description: Individual component checks
+          items:
+            $ref: '#/components/schemas/ComponentCheck'
+    ComponentCheck:
+      type: object
+      description: Health check result for a single component
+      properties:
+        componentName:
+          type: string
+          description: Component name
+          example: Cassandra backend
+        escapedComponentName:
+          type: string
+          description: URL-encoded component name
+          example: Cassandra%20backend
+        status:
+          type: string
+          description: Component health status
+          enum: [healthy, degraded, unhealthy]
+          example: healthy
+        cause:
+          type: string
+          description: Reason for unhealthy status (if applicable)
+          example: Connection timeout

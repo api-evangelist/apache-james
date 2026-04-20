@@ -1,0 +1,95 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "james": "https://apache-james.apache.org/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "ComponentCheck": "james:ComponentCheck",
+    "DomainRequest": "james:DomainRequest",
+    "MailRepository": "james:MailRepository",
+    "Task": "james:Task",
+    "Quota": "james:Quota",
+    "UserRequest": "james:UserRequest",
+    "Mailbox": "james:Mailbox",
+    "User": "james:User",
+    "HealthCheckResult": "james:HealthCheckResult",
+    "componentName": {
+      "@id": "james:componentName",
+      "@type": "xsd:string"
+    },
+    "escapedComponentName": {
+      "@id": "james:escapedComponentName",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "james:status",
+      "@type": "xsd:string"
+    },
+    "cause": {
+      "@id": "james:cause",
+      "@type": "xsd:string"
+    },
+    "domain": {
+      "@id": "james:domain",
+      "@type": "xsd:string"
+    },
+    "repository": {
+      "@id": "james:repository",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "james:id",
+      "@type": "xsd:string"
+    },
+    "taskId": {
+      "@id": "james:taskId",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "james:type",
+      "@type": "xsd:string"
+    },
+    "submitDate": {
+      "@id": "james:submitDate",
+      "@type": "xsd:dateTime"
+    },
+    "startedDate": {
+      "@id": "james:startedDate",
+      "@type": "xsd:dateTime"
+    },
+    "completedDate": {
+      "@id": "james:completedDate",
+      "@type": "xsd:dateTime"
+    },
+    "count": {
+      "@id": "james:count",
+      "@type": "xsd:integer"
+    },
+    "size": {
+      "@id": "james:size",
+      "@type": "xsd:integer"
+    },
+    "username": {
+      "@id": "james:username",
+      "@type": "xsd:string"
+    },
+    "password": {
+      "@id": "james:password",
+      "@type": "xsd:string"
+    },
+    "mailboxName": {
+      "@id": "james:mailboxName",
+      "@type": "xsd:string"
+    },
+    "mailboxId": {
+      "@id": "james:mailboxId",
+      "@type": "xsd:string"
+    },
+    "checks": {
+      "@id": "james:checks",
+      "@container": "@set",
+      "@type": "xsd:string"
+    }
+  }
+}

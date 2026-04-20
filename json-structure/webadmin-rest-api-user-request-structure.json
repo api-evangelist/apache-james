@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-user-request-structure.json",
+  "name": "UserRequest",
+  "description": "Request body for user creation",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "User email address",
+      "example": "user@example.com"
+    },
+    "password": {
+      "type": "string",
+      "description": "User password",
+      "example": "securepassword"
+    }
+  }
+}

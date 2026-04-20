@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-domain-request-structure.json",
+  "name": "DomainRequest",
+  "description": "Request body for domain operations",
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "Email domain name",
+      "example": "example.com"
+    }
+  }
+}

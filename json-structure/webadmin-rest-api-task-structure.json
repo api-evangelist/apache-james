@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-task-structure.json",
+  "name": "Task",
+  "description": "An asynchronous task",
+  "properties": {
+    "taskId": {
+      "type": "uuid",
+      "description": "Unique task identifier",
+      "example": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    },
+    "type": {
+      "type": "string",
+      "description": "Task type",
+      "example": "reindexing"
+    },
+    "status": {
+      "type": "string",
+      "description": "Task status",
+      "enum": [
+        "waiting",
+        "inProgress",
+        "completed",
+        "failed",
+        "cancelled"
+      ],
+      "example": "completed"
+    },
+    "submitDate": {
+      "type": "datetime",
+      "description": "When the task was submitted",
+      "example": "2025-03-15T14:30:00Z"
+    },
+    "startedDate": {
+      "type": "datetime",
+      "description": "When the task started executing",
+      "example": "2025-03-15T14:30:01Z"
+    },
+    "completedDate": {
+      "type": "datetime",
+      "description": "When the task completed",
+      "example": "2025-03-15T14:30:05Z"
+    }
+  }
+}

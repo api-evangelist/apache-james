@@ -1,0 +1,123 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Apache James"
+  description: "Vocabulary for Apache James mail server REST API and administration workflows."
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - namespace: james-webadmin
+      name: Apache James WebAdmin REST API
+      version: "3.9.0"
+      baseUrl: http://localhost:8000
+      status: active
+
+  resources:
+    - name: domains
+      description: Email domains hosted by James
+      apis: [james-webadmin]
+      actions: [list, create, get, delete]
+    - name: users
+      description: Mail user accounts
+      apis: [james-webadmin]
+      actions: [list, create, delete]
+    - name: mailboxes
+      description: User mail folders and IMAP mailboxes
+      apis: [james-webadmin]
+      actions: [list, create, delete]
+    - name: quotas
+      description: User and domain mailbox quotas
+      apis: [james-webadmin]
+      actions: [get, update]
+    - name: tasks
+      description: Asynchronous administrative tasks
+      apis: [james-webadmin]
+      actions: [list, get, cancel]
+    - name: mail-queues
+      description: Outbound and inbound mail queues
+      apis: [james-webadmin]
+      actions: [list, get, flush]
+    - name: health
+      description: System component health checks
+      apis: [james-webadmin]
+      actions: [check]
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: create
+      httpMethod: POST
+      pattern: write
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+    - name: update
+      httpMethod: PUT
+      pattern: write
+    - name: cancel
+      httpMethod: DELETE
+      pattern: destructive
+    - name: flush
+      httpMethod: DELETE
+      pattern: destructive
+    - name: check
+      httpMethod: GET
+      pattern: read
+
+  authentication:
+    schemes:
+      - name: BearerAuth
+        type: http
+        scheme: bearer
+
+capability:
+  workflows:
+    - name: Mail Server Management
+      file: capabilities/mail-server-management.yaml
+      toolCount: 5
+      personas:
+        - Mail Administrator
+
+  personas:
+    - id: mail-administrator
+      name: Mail Administrator
+      description: Administrators who manage James mail server domains, users, and queues
+      workflows: [Mail Server Management]
+
+  domains:
+    - name: Domain Management
+      resources: [domains]
+    - name: User Management
+      resources: [users, mailboxes, quotas]
+    - name: Operations
+      resources: [tasks, mail-queues, health]
+
+  namespaces:
+    - name: james-webadmin
+      type: consumed
+    - name: james-mail-management-api
+      type: rest-exposed
+      port: 8080
+    - name: james-mail-management-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: JAMES_ADMIN_TOKEN
+      workflows: [Mail Server Management]
+
+crossReference:
+  - resource: domains
+    operations: [listDomains, createDomain, getDomain, deleteDomain]
+    workflows: [Mail Server Management]
+    personas: [Mail Administrator]
+  - resource: users
+    operations: [listUsers, createUser, deleteUser]
+    workflows: [Mail Server Management]
+    personas: [Mail Administrator]

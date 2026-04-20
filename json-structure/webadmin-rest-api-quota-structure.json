@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-structure/webadmin-rest-api-quota-structure.json",
+  "name": "Quota",
+  "description": "Storage and message quota configuration",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Maximum number of messages (null for unlimited)",
+      "example": 10000
+    },
+    "size": {
+      "type": "integer",
+      "description": "Maximum storage size in bytes (null for unlimited)",
+      "example": 1073741824
+    }
+  }
+}

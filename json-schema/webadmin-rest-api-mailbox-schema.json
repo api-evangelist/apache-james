@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/json-schema/webadmin-rest-api-mailbox-schema.json",
+  "title": "Mailbox",
+  "description": "A user mailbox",
+  "type": "object",
+  "properties": {
+    "mailboxName": {
+      "type": "string",
+      "description": "Mailbox folder name",
+      "example": "INBOX"
+    },
+    "mailboxId": {
+      "type": "string",
+      "description": "Unique mailbox identifier",
+      "example": "mailbox-1234"
+    }
+  }
+}
