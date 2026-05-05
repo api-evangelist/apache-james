@@ -1,0 +1,13 @@
+{
+  "repo": "apache-james",
+  "feeds": [
+    {
+      "source": "https://james.apache.org/blog/",
+      "feed_url": "https://james.apache.org/feed",
+      "saved": 10,
+      "title": "James Website"
+    }
+  ],
+  "post_count": 10,
+  "fetched": "2026-05-03T23:22:14Z"
+}
