@@ -1,0 +1,180 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache James WebAdmin REST API — Domains
+  description: 'Apache James WebAdmin REST API — Domains. 4 operations. Lead operation: Apache james Apache James WebAdmin
+    List Domains. Self-contained Naftiko capability covering one Apache James business surface.'
+  tags:
+  - Apache James
+  - Domains
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_JAMES_API_KEY: APACHE_JAMES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webadmin-rest-domains
+    baseUri: http://localhost:8000
+    description: Apache James WebAdmin REST API — Domains business capability. Self-contained, no shared references.
+    resources:
+    - name: domains
+      path: /domains
+      operations:
+      - name: listdomains
+        method: GET
+        description: Apache james Apache James WebAdmin List Domains
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdomain
+        method: POST
+        description: Apache james Apache James WebAdmin Create Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: domains-domain
+      path: /domains/{domain}
+      operations:
+      - name: getdomain
+        method: GET
+        description: Apache james Apache James WebAdmin Get Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain
+          in: path
+          type: string
+          required: true
+      - name: deletedomain
+        method: DELETE
+        description: Apache james Apache James WebAdmin Delete Domain
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: domain
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.APACHE_JAMES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: webadmin-rest-domains-rest
+    port: 8080
+    description: REST adapter for Apache James WebAdmin REST API — Domains. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/domains
+      name: domains
+      description: REST surface for domains.
+      operations:
+      - method: GET
+        name: listdomains
+        description: Apache james Apache James WebAdmin List Domains
+        call: webadmin-rest-domains.listdomains
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdomain
+        description: Apache james Apache James WebAdmin Create Domain
+        call: webadmin-rest-domains.createdomain
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/domains/{domain}
+      name: domains-domain
+      description: REST surface for domains-domain.
+      operations:
+      - method: GET
+        name: getdomain
+        description: Apache james Apache James WebAdmin Get Domain
+        call: webadmin-rest-domains.getdomain
+        with:
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedomain
+        description: Apache james Apache James WebAdmin Delete Domain
+        call: webadmin-rest-domains.deletedomain
+        with:
+          domain: rest.domain
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webadmin-rest-domains-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache James WebAdmin REST API — Domains. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apache-james-apache-james-webadmin
+      description: Apache james Apache James WebAdmin List Domains
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-domains.listdomains
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-2
+      description: Apache james Apache James WebAdmin Create Domain
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: webadmin-rest-domains.createdomain
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-3
+      description: Apache james Apache James WebAdmin Get Domain
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-domains.getdomain
+      with:
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-4
+      description: Apache james Apache James WebAdmin Delete Domain
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: webadmin-rest-domains.deletedomain
+      with:
+        domain: tools.domain
+      outputParameters:
+      - type: object
+        mapping: $.

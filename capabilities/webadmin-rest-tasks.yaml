@@ -1,0 +1,145 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache James WebAdmin REST API — Tasks
+  description: 'Apache James WebAdmin REST API — Tasks. 3 operations. Lead operation: Apache james Apache James WebAdmin List
+    Tasks. Self-contained Naftiko capability covering one Apache James business surface.'
+  tags:
+  - Apache James
+  - Tasks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_JAMES_API_KEY: APACHE_JAMES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webadmin-rest-tasks
+    baseUri: http://localhost:8000
+    description: Apache James WebAdmin REST API — Tasks business capability. Self-contained, no shared references.
+    resources:
+    - name: tasks
+      path: /tasks
+      operations:
+      - name: listtasks
+        method: GET
+        description: Apache james Apache James WebAdmin List Tasks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: tasks-taskId
+      path: /tasks/{taskId}
+      operations:
+      - name: gettask
+        method: GET
+        description: Apache james Apache James WebAdmin Get Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          required: true
+      - name: canceltask
+        method: DELETE
+        description: Apache james Apache James WebAdmin Cancel Task
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taskId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.APACHE_JAMES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: webadmin-rest-tasks-rest
+    port: 8080
+    description: REST adapter for Apache James WebAdmin REST API — Tasks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tasks
+      name: tasks
+      description: REST surface for tasks.
+      operations:
+      - method: GET
+        name: listtasks
+        description: Apache james Apache James WebAdmin List Tasks
+        call: webadmin-rest-tasks.listtasks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tasks/{taskid}
+      name: tasks-taskid
+      description: REST surface for tasks-taskId.
+      operations:
+      - method: GET
+        name: gettask
+        description: Apache james Apache James WebAdmin Get Task
+        call: webadmin-rest-tasks.gettask
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: canceltask
+        description: Apache james Apache James WebAdmin Cancel Task
+        call: webadmin-rest-tasks.canceltask
+        with:
+          taskId: rest.taskId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webadmin-rest-tasks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache James WebAdmin REST API — Tasks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-james-apache-james-webadmin
+      description: Apache james Apache James WebAdmin List Tasks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-tasks.listtasks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-2
+      description: Apache james Apache James WebAdmin Get Task
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-tasks.gettask
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-3
+      description: Apache james Apache James WebAdmin Cancel Task
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: webadmin-rest-tasks.canceltask
+      with:
+        taskId: tools.taskId
+      outputParameters:
+      - type: object
+        mapping: $.

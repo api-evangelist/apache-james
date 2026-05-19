@@ -1,0 +1,120 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache James WebAdmin REST API — Quotas
+  description: 'Apache James WebAdmin REST API — Quotas. 2 operations. Lead operation: Apache james Apache James WebAdmin
+    Get User Quota. Self-contained Naftiko capability covering one Apache James business surface.'
+  tags:
+  - Apache James
+  - Quotas
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APACHE_JAMES_API_KEY: APACHE_JAMES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: webadmin-rest-quotas
+    baseUri: http://localhost:8000
+    description: Apache James WebAdmin REST API — Quotas business capability. Self-contained, no shared references.
+    resources:
+    - name: quota-users-username
+      path: /quota/users/{username}
+      operations:
+      - name: getuserquota
+        method: GET
+        description: Apache james Apache James WebAdmin Get User Quota
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+      - name: updateuserquota
+        method: PUT
+        description: Apache james Apache James WebAdmin Update User Quota
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.APACHE_JAMES_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: webadmin-rest-quotas-rest
+    port: 8080
+    description: REST adapter for Apache James WebAdmin REST API — Quotas. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/quota/users/{username}
+      name: quota-users-username
+      description: REST surface for quota-users-username.
+      operations:
+      - method: GET
+        name: getuserquota
+        description: Apache james Apache James WebAdmin Get User Quota
+        call: webadmin-rest-quotas.getuserquota
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateuserquota
+        description: Apache james Apache James WebAdmin Update User Quota
+        call: webadmin-rest-quotas.updateuserquota
+        with:
+          username: rest.username
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: webadmin-rest-quotas-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache James WebAdmin REST API — Quotas. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apache-james-apache-james-webadmin
+      description: Apache james Apache James WebAdmin Get User Quota
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-quotas.getuserquota
+      with:
+        username: tools.username
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apache-james-apache-james-webadmin-2
+      description: Apache james Apache James WebAdmin Update User Quota
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: webadmin-rest-quotas.updateuserquota
+      with:
+        username: tools.username
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
