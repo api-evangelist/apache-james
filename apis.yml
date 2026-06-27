@@ -34,21 +34,21 @@ apis:
     url: https://james.apache.org/server/manage-webadmin.html
   - type: OpenAPI
     url: openapi/apache-james-webadmin-rest-api.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-domains.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-healthcheck.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-mailqueues.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-mailrepositories.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-mailboxes.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-quotas.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-tasks.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-users.yaml
 - aid: apache-james:jmap-api
   name: Apache James JMAP API
