@@ -1,0 +1,12 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apache-james-webadmin-rest-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/apache-james-webadmin-rest-api.yaml

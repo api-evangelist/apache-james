@@ -63,6 +63,12 @@ apis:
   - type: Documentation
     url: https://james.apache.org/server/rfcs-compliance.html
 common:
+- type: VulnerabilityDisclosure
+  url: security/apache-james-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/apache-james-domain-security.yml
+- type: Authentication
+  url: authentication/apache-james-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/apache
 - type: GitHubRepository
