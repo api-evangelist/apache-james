@@ -63,6 +63,8 @@ apis:
   - type: Documentation
     url: https://james.apache.org/server/rfcs-compliance.html
 common:
+- type: AgenticAccess
+  url: agentic-access/apache-james-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/apache-james-vulnerability-disclosure.yml
 - type: DomainSecurity
