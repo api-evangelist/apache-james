@@ -1,0 +1,125 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Domains
+  description: Email domain management
+paths:
+  /domains:
+    get:
+      operationId: listDomains
+      summary: Apache james Apache James WebAdmin List Domains
+      description: List all email domains configured in the James server.
+      tags:
+      - Domains
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of domains
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: example.com
+              examples:
+                listDomains200Example:
+                  summary: Default listDomains 200 response
+                  x-microcks-default: true
+                  value: {}
+    post:
+      operationId: createDomain
+      summary: Apache james Apache James WebAdmin Create Domain
+      description: Create a new email domain.
+      tags:
+      - Domains
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainRequest'
+            examples:
+              createDomainRequestExample:
+                summary: Default createDomain request
+                x-microcks-default: true
+                value:
+                  domain: example.com
+      responses:
+        '204':
+          description: Domain created successfully
+        '400':
+          description: Invalid domain name
+  /domains/{domain}:
+    get:
+      operationId: getDomain
+      summary: Apache james Apache James WebAdmin Get Domain
+      description: Check if a domain exists.
+      tags:
+      - Domains
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+        example: example.com
+      responses:
+        '200':
+          description: Domain exists
+        '404':
+          description: Domain not found
+    delete:
+      operationId: deleteDomain
+      summary: Apache james Apache James WebAdmin Delete Domain
+      description: Delete an email domain.
+      tags:
+      - Domains
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: domain
+        in: path
+        required: true
+        schema:
+          type: string
+        example: example.com
+      responses:
+        '204':
+          description: Domain deleted
+components:
+  schemas:
+    DomainRequest:
+      type: object
+      description: Request body for domain operations
+      properties:
+        domain:
+          type: string
+          description: Email domain name
+          example: example.com
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

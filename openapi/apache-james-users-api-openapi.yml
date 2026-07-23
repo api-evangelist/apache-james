@@ -1,0 +1,116 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains Users API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Users
+  description: User account management
+paths:
+  /users:
+    get:
+      operationId: listUsers
+      summary: Apache james Apache James WebAdmin List Users
+      description: List all users in the James server.
+      tags:
+      - Users
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+              examples:
+                listUsers200Example:
+                  summary: Default listUsers 200 response
+                  x-microcks-default: true
+                  value: {}
+    post:
+      operationId: createUser
+      summary: Apache james Apache James WebAdmin Create User
+      description: Create a new user account.
+      tags:
+      - Users
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRequest'
+            examples:
+              createUserRequestExample:
+                summary: Default createUser request
+                x-microcks-default: true
+                value:
+                  username: user@example.com
+                  password: securepassword
+      responses:
+        '200':
+          description: User created
+        '400':
+          description: Invalid user data
+  /users/{username}:
+    delete:
+      operationId: deleteUser
+      summary: Apache james Apache James WebAdmin Delete User
+      description: Delete a user account and all associated data.
+      tags:
+      - Users
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '204':
+          description: User deleted
+components:
+  schemas:
+    UserRequest:
+      type: object
+      description: Request body for user creation
+      properties:
+        username:
+          type: string
+          description: User email address
+          example: user@example.com
+        password:
+          type: string
+          description: User password
+          example: securepassword
+    User:
+      type: object
+      description: A James mail server user account
+      properties:
+        username:
+          type: string
+          description: User email address
+          example: user@example.com
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

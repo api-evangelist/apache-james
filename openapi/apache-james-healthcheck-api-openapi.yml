@@ -1,0 +1,92 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains HealthCheck API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: HealthCheck
+  description: System health monitoring
+paths:
+  /healthcheck:
+    get:
+      operationId: checkHealth
+      summary: Apache james Apache James WebAdmin Check Health
+      description: Check the health status of all system components.
+      tags:
+      - HealthCheck
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: All components healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheckResult'
+              examples:
+                checkHealth200Example:
+                  summary: Default checkHealth 200 response
+                  x-microcks-default: true
+                  value:
+                    status: healthy
+                    checks: []
+        '503':
+          description: One or more components unhealthy
+components:
+  schemas:
+    ComponentCheck:
+      type: object
+      description: Health check result for a single component
+      properties:
+        componentName:
+          type: string
+          description: Component name
+          example: Cassandra backend
+        escapedComponentName:
+          type: string
+          description: URL-encoded component name
+          example: Cassandra%20backend
+        status:
+          type: string
+          description: Component health status
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+          example: healthy
+        cause:
+          type: string
+          description: Reason for unhealthy status (if applicable)
+          example: Connection timeout
+    HealthCheckResult:
+      type: object
+      description: Health check results for all components
+      properties:
+        status:
+          type: string
+          description: Overall health status
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+          example: healthy
+        checks:
+          type: array
+          description: Individual component checks
+          items:
+            $ref: '#/components/schemas/ComponentCheck'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

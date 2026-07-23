@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains Tasks API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Tasks
+  description: Asynchronous task management
+paths:
+  /tasks:
+    get:
+      operationId: listTasks
+      summary: Apache james Apache James WebAdmin List Tasks
+      description: List all asynchronous tasks and their statuses.
+      tags:
+      - Tasks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+              examples:
+                listTasks200Example:
+                  summary: Default listTasks 200 response
+                  x-microcks-default: true
+                  value: {}
+  /tasks/{taskId}:
+    get:
+      operationId: getTask
+      summary: Apache james Apache James WebAdmin Get Task
+      description: Retrieve the status and result of an asynchronous task.
+      tags:
+      - Tasks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      responses:
+        '200':
+          description: Task status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+              examples:
+                getTask200Example:
+                  summary: Default getTask 200 response
+                  x-microcks-default: true
+                  value:
+                    taskId: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+                    type: reindexing
+                    status: completed
+                    submitDate: '2025-03-15T14:30:00Z'
+                    startedDate: '2025-03-15T14:30:01Z'
+                    completedDate: '2025-03-15T14:30:05Z'
+    delete:
+      operationId: cancelTask
+      summary: Apache james Apache James WebAdmin Cancel Task
+      description: Cancel a pending or running asynchronous task.
+      tags:
+      - Tasks
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: taskId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+        example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+      responses:
+        '204':
+          description: Task cancelled
+components:
+  schemas:
+    Task:
+      type: object
+      description: An asynchronous task
+      properties:
+        taskId:
+          type: string
+          format: uuid
+          description: Unique task identifier
+          example: a1b2c3d4-e5f6-7890-abcd-ef1234567890
+        type:
+          type: string
+          description: Task type
+          example: reindexing
+        status:
+          type: string
+          description: Task status
+          enum:
+          - waiting
+          - inProgress
+          - completed
+          - failed
+          - cancelled
+          example: completed
+        submitDate:
+          type: string
+          format: date-time
+          description: When the task was submitted
+          example: '2025-03-15T14:30:00Z'
+        startedDate:
+          type: string
+          format: date-time
+          description: When the task started executing
+          example: '2025-03-15T14:30:01Z'
+        completedDate:
+          type: string
+          format: date-time
+          description: When the task completed
+          example: '2025-03-15T14:30:05Z'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

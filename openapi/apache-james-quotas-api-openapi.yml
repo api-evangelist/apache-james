@@ -1,0 +1,100 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains Quotas API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Quotas
+  description: Storage and message quota management
+paths:
+  /quota/users/{username}:
+    get:
+      operationId: getUserQuota
+      summary: Apache james Apache James WebAdmin Get User Quota
+      description: Retrieve the storage and message quota settings for a user.
+      tags:
+      - Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '200':
+          description: User quota
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Quota'
+              examples:
+                getUserQuota200Example:
+                  summary: Default getUserQuota 200 response
+                  x-microcks-default: true
+                  value:
+                    count: 10000
+                    size: 1073741824
+    put:
+      operationId: updateUserQuota
+      summary: Apache james Apache James WebAdmin Update User Quota
+      description: Set storage and message quota for a specific user.
+      tags:
+      - Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Quota'
+            examples:
+              updateUserQuotaRequestExample:
+                summary: Default updateUserQuota request
+                x-microcks-default: true
+                value:
+                  count: 10000
+                  size: 1073741824
+      responses:
+        '204':
+          description: Quota updated
+components:
+  schemas:
+    Quota:
+      type: object
+      description: Storage and message quota configuration
+      properties:
+        count:
+          type: integer
+          description: Maximum number of messages (null for unlimited)
+          example: 10000
+        size:
+          type: integer
+          description: Maximum storage size in bytes (null for unlimited)
+          example: 1073741824
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

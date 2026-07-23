@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains Mailboxes API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: Mailboxes
+  description: Mailbox management
+paths:
+  /users/{username}/mailboxes:
+    get:
+      operationId: listUserMailboxes
+      summary: Apache james Apache James WebAdmin List User Mailboxes
+      description: List all mailboxes for a specific user.
+      tags:
+      - Mailboxes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        example: user@example.com
+      responses:
+        '200':
+          description: List of mailboxes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mailbox'
+              examples:
+                listUserMailboxes200Example:
+                  summary: Default listUserMailboxes 200 response
+                  x-microcks-default: true
+                  value: {}
+components:
+  schemas:
+    Mailbox:
+      type: object
+      description: A user mailbox
+      properties:
+        mailboxName:
+          type: string
+          description: Mailbox folder name
+          example: INBOX
+        mailboxId:
+          type: string
+          description: Unique mailbox identifier
+          example: mailbox-1234
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

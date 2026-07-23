@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains MailQueues API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: MailQueues
+  description: Mail queue management
+paths:
+  /mailQueues:
+    get:
+      operationId: listMailQueues
+      summary: Apache james Apache James WebAdmin List Mail Queues
+      description: List all mail queues on the server.
+      tags:
+      - MailQueues
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of mail queues
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              examples:
+                listMailQueues200Example:
+                  summary: Default listMailQueues 200 response
+                  x-microcks-default: true
+                  value: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

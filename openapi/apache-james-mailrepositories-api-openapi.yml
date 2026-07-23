@@ -1,0 +1,61 @@
+openapi: 3.0.3
+info:
+  title: Apache James WebAdmin REST Domains MailRepositories API
+  description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
+  version: 3.9.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  contact:
+    email: server-dev@james.apache.org
+servers:
+- url: http://localhost:8000
+  description: Apache James WebAdmin server
+security:
+- bearerAuth: []
+tags:
+- name: MailRepositories
+  description: Mail repository management
+paths:
+  /mailRepositories:
+    get:
+      operationId: listMailRepositories
+      summary: Apache james Apache James WebAdmin List Mail Repositories
+      description: List all mail repositories on the server.
+      tags:
+      - MailRepositories
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+      responses:
+        '200':
+          description: List of mail repositories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MailRepository'
+              examples:
+                listMailRepositories200Example:
+                  summary: Default listMailRepositories 200 response
+                  x-microcks-default: true
+                  value: {}
+components:
+  schemas:
+    MailRepository:
+      type: object
+      description: A mail repository for storing messages
+      properties:
+        repository:
+          type: string
+          description: Repository path
+          example: var/mail/error/
+        id:
+          type: string
+          description: Repository identifier
+          example: var%2Fmail%2Ferror%2F
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
