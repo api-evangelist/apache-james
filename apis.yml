@@ -4,9 +4,22 @@ description: Apache James (Java Apache Mail Enterprise Server) is a portable and
   in Java. It implements SMTP, IMAP, POP3, and JMAP protocols and provides a modular architecture with a comprehensive administration
   REST API and Cassandra-backed distributed deployment.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/apache-james.png
 tags:
 - Email
 - IMAP
@@ -20,20 +33,30 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: apache-james:webadmin-rest-api
-  name: Apache James WebAdmin REST API
-  description: The James WebAdmin API provides REST endpoints for managing domains, users, mailboxes, mail repositories, mail
-    queues, quotas, drop lists, and async tasks. It is the primary management interface for James server instances.
-  humanURL: https://james.apache.org/server/manage-webadmin.html
+- aid: apache-james:jmap-api
+  name: Apache James JMAP API
+  description: >-
+    The JMAP (JSON Meta Application Protocol) implementation in James provides a modern, efficient email
+    protocol for synchronizing messages, mailboxes, contacts, and calendars for email clients.
+  humanURL: https://james.apache.org/server/rfcs-compliance.html
   tags:
-  - Administration
   - Email
-  - REST
+  - JMAP
+  - JSON
   properties:
   - type: Documentation
-    url: https://james.apache.org/server/manage-webadmin.html
+    url: https://james.apache.org/server/rfcs-compliance.html
+- aid: apache-james:apache-james-domains-api
+  name: Apache James Domains API
+  description: Email domain management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - Domains
+  properties:
   - type: OpenAPI
-    url: openapi/apache-james-webadmin-rest-api.yaml
+    url: openapi/apache-james-domains-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
   - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-domains.yaml
   - type: X-NaftikoCapability
@@ -50,18 +73,195 @@ apis:
     url: capabilities/webadmin-rest-tasks.yaml
   - type: X-NaftikoCapability
     url: capabilities/webadmin-rest-users.yaml
-- aid: apache-james:jmap-api
-  name: Apache James JMAP API
-  description: The JMAP (JSON Meta Application Protocol) implementation in James provides a modern, efficient email protocol
-    for synchronizing messages, mailboxes, contacts, and calendars for email clients.
-  humanURL: https://james.apache.org/server/rfcs-compliance.html
+- aid: apache-james:apache-james-healthcheck-api
+  name: Apache James HealthCheck API
+  description: System health monitoring
+  humanURL: https://james.apache.org/server/manage-webadmin.html
   tags:
-  - Email
-  - JMAP
-  - JSON
+  - HealthCheck
   properties:
+  - type: OpenAPI
+    url: openapi/apache-james-healthcheck-api-openapi.yml
   - type: Documentation
-    url: https://james.apache.org/server/rfcs-compliance.html
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-mailboxes-api
+  name: Apache James Mailboxes API
+  description: Mailbox management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - Mailboxes
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-mailboxes-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-mailqueues-api
+  name: Apache James MailQueues API
+  description: Mail queue management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - MailQueues
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-mailqueues-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-mailrepositories-api
+  name: Apache James MailRepositories API
+  description: Mail repository management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - MailRepositories
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-mailrepositories-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-quotas-api
+  name: Apache James Quotas API
+  description: Storage and message quota management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - Quotas
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-quotas-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-tasks-api
+  name: Apache James Tasks API
+  description: Asynchronous task management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
+- aid: apache-james:apache-james-users-api
+  name: Apache James Users API
+  description: User account management
+  humanURL: https://james.apache.org/server/manage-webadmin.html
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-users-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-domains.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-healthcheck.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailqueues.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailrepositories.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-mailboxes.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-quotas.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-tasks.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/webadmin-rest-users.yaml
 common:
 - type: AgenticAccess
   url: agentic-access/apache-james-agentic-access.yml
