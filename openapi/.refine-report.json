@@ -1,0 +1,28 @@
+{
+  "provider": "apache-james",
+  "sources": [
+    "apache-james-domains-api-openapi.yml",
+    "apache-james-healthcheck-api-openapi.yml",
+    "apache-james-mailboxes-api-openapi.yml",
+    "apache-james-mailqueues-api-openapi.yml",
+    "apache-james-mailrepositories-api-openapi.yml",
+    "apache-james-quotas-api-openapi.yml",
+    "apache-james-tasks-api-openapi.yml",
+    "apache-james-users-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-james-domains-api-openapi.yml",
+    "apache-james-healthcheck-api-openapi.yml",
+    "apache-james-mailboxes-api-openapi.yml",
+    "apache-james-mailqueues-api-openapi.yml",
+    "apache-james-mailrepositories-api-openapi.yml",
+    "apache-james-quotas-api-openapi.yml",
+    "apache-james-tasks-api-openapi.yml",
+    "apache-james-users-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
