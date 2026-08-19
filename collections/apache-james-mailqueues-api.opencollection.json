@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache James WebAdmin REST Domains MailQueues API",
+    "version": "3.9.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MailQueues",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin List Mail Queues",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/mailQueues"
+          },
+          "docs": "List all mail queues on the server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

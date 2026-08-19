@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache James WebAdmin REST Domains Users API",
+    "version": "3.9.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/users"
+          },
+          "docs": "List all users in the James server."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new user account."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8000/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "user@example.com",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a user account and all associated data."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

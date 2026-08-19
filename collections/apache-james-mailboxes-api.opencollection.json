@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache James WebAdmin REST Domains Mailboxes API",
+    "version": "3.9.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mailboxes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin List User Mailboxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/users/:username/mailboxes",
+            "params": [
+              {
+                "name": "username",
+                "value": "user@example.com",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all mailboxes for a specific user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache James WebAdmin REST Domains API",
+    "version": "3.9.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin List Domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/domains"
+          },
+          "docs": "List all email domains configured in the James server."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Create Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:8000/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new email domain."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Get Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/domains/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Check if a domain exists."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Delete Domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8000/domains/:domain",
+            "params": [
+              {
+                "name": "domain",
+                "value": "example.com",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an email domain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

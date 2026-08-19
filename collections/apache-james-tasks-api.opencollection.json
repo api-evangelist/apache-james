@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache James WebAdmin REST Domains Tasks API",
+    "version": "3.9.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin List Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/tasks"
+          },
+          "docs": "List all asynchronous tasks and their statuses."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Get Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8000/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve the status and result of an asynchronous task."
+        },
+        {
+          "info": {
+            "name": "Apache james Apache James WebAdmin Cancel Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:8000/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel a pending or running asynchronous task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

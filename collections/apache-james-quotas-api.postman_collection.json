@@ -1,0 +1,250 @@
+{
+  "item": [
+    {
+      "id": "86dfe5d8-04fd-48da-a3e1-d2fa68e98b2a",
+      "name": "Quotas",
+      "description": {
+        "content": "Storage and message quota management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0cc02df6-fe47-45e4-8ed9-fcc65b9226c1",
+          "name": "Apache james Apache James WebAdmin Get User Quota",
+          "request": {
+            "name": "Apache james Apache James WebAdmin Get User Quota",
+            "description": {
+              "content": "Retrieve the storage and message quota settings for a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quota",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5790ce5-6236-46de-8ef7-48961727772d",
+              "name": "User quota",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quota",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 10000,\n  \"size\": 1073741824\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60fd63d9-05ca-4389-81d7-f8f3a803615a",
+          "name": "Apache james Apache James WebAdmin Update User Quota",
+          "request": {
+            "name": "Apache james Apache James WebAdmin Update User Quota",
+            "description": {
+              "content": "Set storage and message quota for a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quota",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"count\": \"<integer>\",\n  \"size\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "680ba600-3720-438e-a00d-3b287ae255f2",
+              "name": "Quota updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quota",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"count\": 10000,\n  \"size\": 1073741824\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8000",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "365e5ee5-d7fd-4120-9454-ee2654e0f1e7",
+    "name": "Apache James WebAdmin REST Domains Quotas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.\n\nContact Support:\n Email: server-dev@james.apache.org",
+      "type": "text/plain"
+    }
+  }
+}

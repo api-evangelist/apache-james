@@ -1,0 +1,139 @@
+{
+  "item": [
+    {
+      "id": "40aaf861-f117-4da1-ad49-408649375b58",
+      "name": "Mailboxes",
+      "description": {
+        "content": "Mailbox management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "15f1f312-f621-4dc0-a716-a3beb7642e61",
+          "name": "Apache james Apache James WebAdmin List User Mailboxes",
+          "request": {
+            "name": "Apache james Apache James WebAdmin List User Mailboxes",
+            "description": {
+              "content": "List all mailboxes for a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "users",
+                ":username",
+                "mailboxes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0bfd97d-dae5-4311-afaa-cad72ae87058",
+              "name": "List of mailboxes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "users",
+                    ":username",
+                    "mailboxes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8000",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c6e25ae3-3d51-42a9-b87a-cc8bf2663902",
+    "name": "Apache James WebAdmin REST Domains Mailboxes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.\n\nContact Support:\n Email: server-dev@james.apache.org",
+      "type": "text/plain"
+    }
+  }
+}

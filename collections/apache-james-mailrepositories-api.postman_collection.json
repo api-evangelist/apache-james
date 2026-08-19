@@ -1,0 +1,119 @@
+{
+  "item": [
+    {
+      "id": "6e3303e3-a0e7-409c-b3eb-7fba2be63c63",
+      "name": "MailRepositories",
+      "description": {
+        "content": "Mail repository management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68c9f9e7-74dd-4bec-b55f-c45dea029458",
+          "name": "Apache james Apache James WebAdmin List Mail Repositories",
+          "request": {
+            "name": "Apache james Apache James WebAdmin List Mail Repositories",
+            "description": {
+              "content": "List all mail repositories on the server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "mailRepositories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c87372f6-2913-4431-89c1-521709ad9daf",
+              "name": "List of mail repositories",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "mailRepositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8000",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c72e8b7-9c30-40e1-b89e-4008c786edde",
+    "name": "Apache James WebAdmin REST Domains MailRepositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.\n\nContact Support:\n Email: server-dev@james.apache.org",
+      "type": "text/plain"
+    }
+  }
+}
