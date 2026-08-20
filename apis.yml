@@ -26,6 +26,14 @@ tags:
 - Java
 - JMAP
 - Mail Server
+- Open-Source
+- SMTP
+tags_raw:
+- Email
+- IMAP
+- Java
+- JMAP
+- Mail Server
 - Open Source
 - SMTP
 created: '2026-03-16'
@@ -62,6 +70,8 @@ apis:
   description: System health monitoring
   humanURL: https://james.apache.org/server/manage-webadmin.html
   tags:
+  - Health Check
+  tags_raw:
   - HealthCheck
   properties:
   - type: OpenAPI
@@ -117,6 +127,8 @@ apis:
   description: Asynchronous task management
   humanURL: https://james.apache.org/server/manage-webadmin.html
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
@@ -128,6 +140,8 @@ apis:
   description: User account management
   humanURL: https://james.apache.org/server/manage-webadmin.html
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
