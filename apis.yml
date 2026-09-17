@@ -80,19 +80,6 @@ apis:
     url: openapi/apache-james-domains-api-openapi.yml
   - type: Documentation
     url: https://james.apache.org/server/manage-webadmin.html
-- aid: apache-james:apache-james-healthcheck-api
-  name: Apache James HealthCheck API
-  description: System health monitoring
-  humanURL: https://james.apache.org/server/manage-webadmin.html
-  tags:
-  - Health Check
-  tags_raw:
-  - HealthCheck
-  properties:
-  - type: OpenAPI
-    url: openapi/apache-james-healthcheck-api-openapi.yml
-  - type: Documentation
-    url: https://james.apache.org/server/manage-webadmin.html
 - aid: apache-james:apache-james-mailboxes-api
   name: Apache James Mailboxes API
   description: Mailbox management
@@ -161,6 +148,17 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/apache-james-users-api-openapi.yml
+  - type: Documentation
+    url: https://james.apache.org/server/manage-webadmin.html
+- aid: apache-james:apache-james-health-check-api
+  name: Apache James Health Check API
+  description: System health monitoring
+  humanURL: https://james.apache.org/server/rfcs-compliance.html
+  tags:
+  - Health Check
+  properties:
+  - type: OpenAPI
+    url: openapi/apache-james-health-check-api-openapi.yml
   - type: Documentation
     url: https://james.apache.org/server/manage-webadmin.html
 common:
