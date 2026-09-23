@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Apache James WebAdmin REST Domains HealthCheck API
+  title: Apache James WebAdmin REST Health Check API
   description: REST API for managing the Apache James mail server including domains, users, mailboxes, mail queues, mail repositories, quotas, and async tasks.
   version: 3.9.0
   license:
@@ -14,7 +14,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: HealthCheck
+- name: Health Check
   description: System health monitoring
 paths:
   /healthcheck:
@@ -23,7 +23,7 @@ paths:
       summary: Apache james Apache James WebAdmin Check Health
       description: Check the health status of all system components.
       tags:
-      - HealthCheck
+      - Health Check
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -45,6 +45,23 @@ paths:
           description: One or more components unhealthy
 components:
   schemas:
+    HealthCheckResult:
+      type: object
+      description: Health check results for all components
+      properties:
+        status:
+          type: string
+          description: Overall health status
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+          example: healthy
+        checks:
+          type: array
+          description: Individual component checks
+          items:
+            $ref: '#/components/schemas/ComponentCheck'
     ComponentCheck:
       type: object
       description: Health check result for a single component
@@ -69,23 +86,6 @@ components:
           type: string
           description: Reason for unhealthy status (if applicable)
           example: Connection timeout
-    HealthCheckResult:
-      type: object
-      description: Health check results for all components
-      properties:
-        status:
-          type: string
-          description: Overall health status
-          enum:
-          - healthy
-          - degraded
-          - unhealthy
-          example: healthy
-        checks:
-          type: array
-          description: Individual component checks
-          items:
-            $ref: '#/components/schemas/ComponentCheck'
   securitySchemes:
     bearerAuth:
       type: http
