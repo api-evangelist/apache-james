@@ -41,7 +41,7 @@ tags:
 - Java
 - JMAP
 - Mail Server
-- Open-Source
+- Open Source
 - SMTP
 tags_raw:
 - Email
@@ -51,6 +51,7 @@ tags_raw:
 - Mail Server
 - Open Source
 - SMTP
+- Open-Source
 created: '2026-03-16'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/apis.yml
