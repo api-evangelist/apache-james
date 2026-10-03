@@ -90,6 +90,14 @@ paths:
           description: User deleted
 components:
   schemas:
+    User:
+      type: object
+      description: A James mail server user account
+      properties:
+        username:
+          type: string
+          description: User email address
+          example: user@example.com
     UserRequest:
       type: object
       description: Request body for user creation
@@ -102,14 +110,6 @@ components:
           type: string
           description: User password
           example: securepassword
-    User:
-      type: object
-      description: A James mail server user account
-      properties:
-        username:
-          type: string
-          description: User email address
-          example: user@example.com
   securitySchemes:
     bearerAuth:
       type: http
