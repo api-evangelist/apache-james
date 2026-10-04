@@ -45,23 +45,6 @@ paths:
           description: One or more components unhealthy
 components:
   schemas:
-    HealthCheckResult:
-      type: object
-      description: Health check results for all components
-      properties:
-        status:
-          type: string
-          description: Overall health status
-          enum:
-          - healthy
-          - degraded
-          - unhealthy
-          example: healthy
-        checks:
-          type: array
-          description: Individual component checks
-          items:
-            $ref: '#/components/schemas/ComponentCheck'
     ComponentCheck:
       type: object
       description: Health check result for a single component
@@ -86,6 +69,23 @@ components:
           type: string
           description: Reason for unhealthy status (if applicable)
           example: Connection timeout
+    HealthCheckResult:
+      type: object
+      description: Health check results for all components
+      properties:
+        status:
+          type: string
+          description: Overall health status
+          enum:
+          - healthy
+          - degraded
+          - unhealthy
+          example: healthy
+        checks:
+          type: array
+          description: Individual component checks
+          items:
+            $ref: '#/components/schemas/ComponentCheck'
   securitySchemes:
     bearerAuth:
       type: http
