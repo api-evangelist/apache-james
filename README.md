@@ -1,4 +1,4 @@
-# Apache James (apache-james)
+# Apache James
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,140 +66,194 @@
 
 Apache James (Java Apache Mail Enterprise Server) is a portable and enterprise-ready mail server built entirely in Java. It implements SMTP, IMAP, POP3, and JMAP protocols and provides a modular architecture with a comprehensive administration REST API and Cassandra-backed distributed deployment.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/apache-james/refs/heads/main/apis.yml)
+**Areas:** Email · IMAP · Java · JMAP · Mail Server · Open Source · SMTP
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Apache James on APIs.io
 
-## Tags:
+Everything profiled for Apache James is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apache-james/](https://apis.io/providers/apache-james/)** — or go straight to one of the APIs or properties below.
 
- - Email, IMAP, Java, JMAP, Mail Server, Open Source, SMTP
+### APIs (9)
 
-## Timestamps
+- [Apache James JMAP API](https://apis.io/apis/apache-james/jmap-api/) — The JMAP (JSON Meta Application Protocol) implementation in James provides a modern, efficient email protocol for synchronizing messages, mailboxes,…
+- [Apache James Domains API](https://apis.io/apis/apache-james/apache-james-domains-api/) — Email domain management
+- [Apache James Mailboxes API](https://apis.io/apis/apache-james/apache-james-mailboxes-api/) — Mailbox management
+- [Apache James MailQueues API](https://apis.io/apis/apache-james/apache-james-mailqueues-api/) — Mail queue management
+- [Apache James MailRepositories API](https://apis.io/apis/apache-james/apache-james-mailrepositories-api/) — Mail repository management
+- [Apache James Quotas API](https://apis.io/apis/apache-james/apache-james-quotas-api/) — Storage and message quota management
+- [Apache James Tasks API](https://apis.io/apis/apache-james/apache-james-tasks-api/) — Asynchronous task management
+- [Apache James Users API](https://apis.io/apis/apache-james/apache-james-users-api/) — User account management
+- [Apache James Health Check API](https://apis.io/apis/apache-james/apache-james-health-check-api/) — System health monitoring
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Apache James WebAdmin REST API
-The James WebAdmin API provides REST endpoints for managing domains, users, mailboxes, mail repositories, mail queues, quotas, drop lists, and async tasks.
+#### Agentic access (1)
 
-**Human URL:** [https://james.apache.org/server/manage-webadmin.html](https://james.apache.org/server/manage-webadmin.html)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Apache James Agentic Access](https://apis.io/agentic-access/apache-james/apache-james-agentic-access/)
 
- - Administration, Email, REST
+#### JSON Schema (9)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://james.apache.org/server/manage-webadmin.html)
-- [OpenAPI](openapi/apache-james-webadmin-rest-api.yaml)
+- [ComponentCheck](https://apis.io/schemas/apache-james/webadmin-rest-api-component-check/)
+- [DomainRequest](https://apis.io/schemas/apache-james/webadmin-rest-api-domain-request/)
+- [HealthCheckResult](https://apis.io/schemas/apache-james/webadmin-rest-api-health-check-result/)
+- [MailRepository](https://apis.io/schemas/apache-james/webadmin-rest-api-mail-repository/)
+- [Mailbox](https://apis.io/schemas/apache-james/webadmin-rest-api-mailbox/)
+- [Quota](https://apis.io/schemas/apache-james/webadmin-rest-api-quota/)
+- [Task](https://apis.io/schemas/apache-james/webadmin-rest-api-task/)
+- [User](https://apis.io/schemas/apache-james/webadmin-rest-api-user/)
+- [UserRequest](https://apis.io/schemas/apache-james/webadmin-rest-api-user-request/)
 
-### Apache James JMAP API
-The JMAP implementation in James provides a modern, efficient email protocol for synchronizing messages, mailboxes, contacts, and calendars for email clients.
+#### JSON Structure (9)
 
-**Human URL:** [https://james.apache.org/server/rfcs-compliance.html](https://james.apache.org/server/rfcs-compliance.html)
+Data models expressed in JSON Structure.
 
-#### Tags:
+- [Webadmin Rest Api Component Check Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-component-check-structure/)
+- [Webadmin Rest Api Domain Request Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-domain-request-structure/)
+- [Webadmin Rest Api Health Check Result Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-health-check-result-structure/)
+- [Webadmin Rest Api Mail Repository Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-mail-repository-structure/)
+- [Webadmin Rest Api Mailbox Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-mailbox-structure/)
+- [Webadmin Rest Api Quota Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-quota-structure/)
+- [Webadmin Rest Api Task Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-task-structure/)
+- [Webadmin Rest Api User Request Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-user-request-structure/)
+- [Webadmin Rest Api User Structure](https://apis.io/json-structure/apache-james/webadmin-rest-api-user-structure/)
 
- - Email, JMAP, JSON
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://james.apache.org/server/rfcs-compliance.html)
+- [Apache James Webadmin Rest Api Context](https://apis.io/jsonld/apache-james/apache-james-webadmin-rest-api-context/)
 
-## Common Properties
+#### Vocabulary (1)
 
-- [GitHubOrganization](https://github.com/apache)
-- [GitHubRepository](https://github.com/apache/james-project)
+The provider's domain terms, defined.
+
+- [Apache James Vocabulary](https://apis.io/vocabularies/apache-james/apache-james-vocabulary/)
+
+#### Examples (9)
+
+Example requests and responses.
+
+- [Webadmin Rest Api Component Check Example](https://apis.io/examples/apache-james/webadmin-rest-api-component-check-example/)
+- [Webadmin Rest Api Domain Request Example](https://apis.io/examples/apache-james/webadmin-rest-api-domain-request-example/)
+- [Webadmin Rest Api Health Check Result Example](https://apis.io/examples/apache-james/webadmin-rest-api-health-check-result-example/)
+- [Webadmin Rest Api Mail Repository Example](https://apis.io/examples/apache-james/webadmin-rest-api-mail-repository-example/)
+- [Webadmin Rest Api Mailbox Example](https://apis.io/examples/apache-james/webadmin-rest-api-mailbox-example/)
+- [Webadmin Rest Api Quota Example](https://apis.io/examples/apache-james/webadmin-rest-api-quota-example/)
+- [Webadmin Rest Api Task Example](https://apis.io/examples/apache-james/webadmin-rest-api-task-example/)
+- [Webadmin Rest Api User Example](https://apis.io/examples/apache-james/webadmin-rest-api-user-example/)
+- [Webadmin Rest Api User Request Example](https://apis.io/examples/apache-james/webadmin-rest-api-user-request-example/)
+
+#### Collections (8)
+
+Postman and Open Collection request collections.
+
+- [Apache James WebAdmin REST Domains API](https://apis.io/collections/apache-james/open-apache-james-domains-api/)
+- [Apache James WebAdmin REST Domains HealthCheck API](https://apis.io/collections/apache-james/open-apache-james-healthcheck-api/)
+- [Apache James WebAdmin REST Domains Mailboxes API](https://apis.io/collections/apache-james/open-apache-james-mailboxes-api/)
+- [Apache James WebAdmin REST Domains MailQueues API](https://apis.io/collections/apache-james/open-apache-james-mailqueues-api/)
+- [Apache James WebAdmin REST Domains MailRepositories API](https://apis.io/collections/apache-james/open-apache-james-mailrepositories-api/)
+- [Apache James WebAdmin REST Domains Quotas API](https://apis.io/collections/apache-james/open-apache-james-quotas-api/)
+- [Apache James WebAdmin REST Domains Tasks API](https://apis.io/collections/apache-james/open-apache-james-tasks-api/)
+- [Apache James WebAdmin REST Domains Users API](https://apis.io/collections/apache-james/open-apache-james-users-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Apache James — jsonschema rules](https://apis.io/rules/apache-james/apache-james-jsonschema-spectral-rules/)
+- [Apache James API Rules](https://apis.io/rules/apache-james/apache-james-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apache James Authentication](https://apis.io/security/apache-james/apache-james-authentication/)
+- [Apache James Domain Security](https://apis.io/security/apache-james/apache-james-domain-security/)
+- [Apache James Vulnerability Disclosure](https://apis.io/security/apache-james/apache-james-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apache James Plans Pricing](https://apis.io/plans/apache-james/apache-james-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apache James Rate Limits](https://apis.io/rate-limits/apache-james/apache-james-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apache James Finops](https://apis.io/finops/apache-james/apache-james-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.apache.org/)
 - [Documentation](https://james.apache.org/documentation.html)
-- [GettingStarted](https://james.apache.org/server/quick-start.html)
-- [TermsOfService](https://www.apache.org/licenses/LICENSE-2.0)
+- [Getting started](https://james.apache.org/server/quick-start.html)
 - [Blog](https://james.apache.org/blog/)
-- [SpectralRules](rules/apache-james-spectral-rules.yml)
-- [Vocabulary](vocabulary/apache-james-vocabulary.yaml)
-- [NaftikoCapability](capabilities/mail-server-management.yaml)
+- [Terms of service](https://www.apache.org/licenses/LICENSE-2.0)
+- [GitHub](https://github.com/apache)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| SMTP Server | Full SMTP server implementation with TLS, DKIM, SPF, and DMARC support. |
-| IMAP Server | IMAP4 server with full RFC compliance for email client access. |
-| JMAP Support | Modern JMAP protocol implementation for efficient email synchronization. |
-| WebAdmin REST API | HTTP REST API for complete server administration without downtime. |
-| Distributed Architecture | Cassandra-backed distributed deployment for high availability. |
-| Modular Design | Pluggable architecture supporting custom protocols, storage, and authentication. |
-| Mail Queuing | Persistent mail queuing with configurable retry strategies. |
-| Quota Management | Per-user, per-domain, and global mailbox and message quota enforcement. |
+**Kin Score 37.0** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 53.1 |
+| Contract governance | 27.3 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 33.3 |
+| Access clarity | 18.4 |
 
-| Name | Description |
-|------|-------------|
-| Enterprise Mail Server | Deploy a full-featured enterprise mail server with SMTP, IMAP, and JMAP. |
-| Mail Server Migration | Migrate from other mail servers with full protocol compatibility. |
-| Automated Email Processing | Build automated email pipelines using James mailet and matcher APIs. |
-| High-Availability Mail | Deploy distributed James clusters with Cassandra and RabbitMQ for HA. |
+**Agent readiness 24.7** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Apache Cassandra | Distributed mail storage backend for high availability deployments. |
-| Apache Kafka | Event bus integration for distributed James deployments. |
-| RabbitMQ | AMQP message queue for inter-node communication. |
-| Elasticsearch/OpenSearch | Full-text mail search indexing via Elasticsearch integration. |
-| OpenLDAP | LDAP authentication and directory integration for user management. |
+**Regulatory alignment 26.5** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apache-james/](https://apis.io/providers/apache-james/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Apache James WebAdmin REST API](openapi/apache-james-webadmin-rest-api.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache James: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-9 schema files extracted from the WebAdmin REST API OpenAPI specification.
-
-### JSON Structure
-
-9 JSON Structure files converted from JSON Schema files.
-
-### JSON-LD
-
-- [Apache James WebAdmin REST API Context](json-ld/apache-james-webadmin-rest-api-context.jsonld)
-
-### Examples
-
-9 example JSON files generated from JSON Schema definitions.
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Apache James WebAdmin REST API](capabilities/shared/webadmin-rest-api.yaml) — 3 operations for domain, user, and task management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Apache James Mail Server Management](capabilities/mail-server-management.yaml) | Apache James WebAdmin REST API | 5 | Mail Administrator |
-
-## Vocabulary
-
-- [Apache James Vocabulary](vocabulary/apache-james-vocabulary.yaml) — Unified taxonomy mapping 7 resources, 8 actions, 1 workflow, and 1 persona
-
-## Rules
-
-- [Apache James Spectral Rules](rules/apache-james-spectral-rules.yml) — 19 rules across 10 categories enforcing Apache James WebAdmin API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** info@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apache-james/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
